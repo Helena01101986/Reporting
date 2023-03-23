@@ -23,6 +23,7 @@ public class CardDeliveryTest {
 
     @Test
     void shouldTestValidData() {
+        DataGenerator.UserInfo validUser = DataGenerator.Registration.generateUser("ru");
         Configuration.holdBrowserOpen = true;
         $x("//input[@placeholder='Город']").setValue(DataGenerator.generateCity());
         $("[data-test-id=date] input").click();
