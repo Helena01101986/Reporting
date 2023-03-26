@@ -33,7 +33,9 @@ public class CardDeliveryTest {
         $("[data-test-id=phone] input").setValue(DataGenerator.generatePhone("ru"));
         $("[data-test-id=agreement]").click();
         $x("//span[contains(text(), 'Запланировать')]").click();
-        $("[data-test-id=success-notification]").shouldBe(visible, Duration.ofSeconds(15));
+        $("[data-test-id=success-notification] .notification__content")
+                .shouldHave(text("Встреча успешно запланирована на " + generateDate(7)))
+                .shouldBe(visible, Duration.ofSeconds(15));
         $("[data-test-id=date] input").click();
         $("[data-test-id=date] input").setValue(Keys.CONTROL + "a" + Keys.DELETE);
         $("[data-test-id=date] input").setValue(generateDate(10));
@@ -42,7 +44,8 @@ public class CardDeliveryTest {
                 .shouldHave(text("У вас уже запланирована встреча на другую дату. Перепланировать?"))
                 .shouldBe(visible, Duration.ofSeconds(15));
         $x("//span[contains(text(), 'Перепланировать')]").click();
-        $x("//div[contains(text(), 'Встреча успешно запланирована')]")
+        $("[data-test-id=success-notification] .notification__content")
+                .shouldHave(text("Встреча успешно запланирована на " + generateDate(10)))
                 .shouldBe(visible, Duration.ofSeconds(15));
 
     }
