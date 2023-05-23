@@ -32,6 +32,12 @@ public class DataGenerator {
         Faker faker = new Faker(new Locale(locale));
         return faker.phoneNumber().phoneNumber();
     }
+
+    public  static String generateInvalidPhone(String locale) {
+        Faker faker = new Faker(new Locale(locale));
+        return faker.phoneNumber().cellPhone();
+    }
+
     public static class Registration {
         private Registration() {
         }
